@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  database:
+    image: "postgres"
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      IMAGE_NAME: fedex_postgres
+      POSTGRES_DB: fedex
+      PGDATA: ../tnt/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/data
+    command: -p 5432
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ../tnt/docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ../tnt/docker-conf/rabbitmq/log/:/var/log/rabbitmq

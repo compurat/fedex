@@ -1,0 +1,1 @@
+insert into pricing (id, country, amount) values (1, 'NL',14.242090605778), (2,'CN', 20.503467806384);
